@@ -157,7 +157,7 @@ interval_value, time_unit = interval_map_dukascopy[interval]
 
 with st.spinner("Carregando dados do DXY..."):
     dxy = fetch_dukascopy_data(
-        dukascopy_python.INSTRUMENT_FX_IDX_USD_IDX,
+        dukascopy_python.INSTRUMENT_IDX_AMERICA_DOLLAR_IDX_USD,
         interval_value,
         time_unit,
         dukascopy_python.OFFER_SIDE_BID,
