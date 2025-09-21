@@ -4,7 +4,7 @@ plotly
 pandas
 numpy
 
-dukascopy-python
+dukascopy-python==4.0.1
 
 
 requests
