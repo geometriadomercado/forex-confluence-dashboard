@@ -5,7 +5,7 @@ import pandas as pd
 import streamlit as st
 
 @st.cache_data(ttl=3600) # Cache por 1 hora
-def fetch_dukascopy_data(instrument_code, interval_value, time_unit, offer_side, start_date, end_date=None):
+def fetch_dukascopy_data(instrument_code, interval, offer_side, start_date, end_date=None):
     """
     Busca dados históricos do Dukascopy.
 
@@ -25,8 +25,7 @@ def fetch_dukascopy_data(instrument_code, interval_value, time_unit, offer_side,
 
     df = dukascopy_python.fetch(
         instrument_code,
-        interval_value,
-        time_unit,
+        interval,
         offer_side,
         start_date,
         end_date,
