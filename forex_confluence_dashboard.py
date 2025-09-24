@@ -138,10 +138,10 @@ from datetime import datetime, timedelta
 
 # Mapeamento de intervalos para Dukascopy
 interval_map_dukascopy = {
-    "5m": (5, dukascopy_python.TIME_UNIT_MIN),
-    "15m": (15, dukascopy_python.TIME_UNIT_MIN),
-    "1h": (1, dukascopy_python.TIME_UNIT_HOUR),
-    "1d": (1, dukascopy_python.TIME_UNIT_DAY),
+    "5m": dukascopy_python.INTERVAL_MINUTE_5,
+    "15m": dukascopy_python.INTERVAL_MINUTE_15,
+    "1h": dukascopy_python.INTERVAL_HOUR_1,
+    "1d": dukascopy_python.INTERVAL_DAY_1,
 }
 
 # Mapeamento de períodos para Dukascopy
