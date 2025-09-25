@@ -153,16 +153,16 @@ period_map_dukascopy = {
 }
 
 start_date = datetime.now() - period_map_dukascopy[period]
-interval_value, time_unit = interval_map_dukascopy[interval]
+# interval_value, time_unit = interval_map_dukascopy[interval] # Não mais necessário
 
 with st.spinner("Carregando dados do DXY..."):
     dxy = fetch_dukascopy_data(
         "USDX",
-        interval_value,
-        time_unit,
+        interval_map_dukascopy[interval],
         dukascopy_python.OFFER_SIDE_BID,
         start_date
     )
+
 
 dxy_used = "USD.USD_DXY"
 if dxy.empty:
@@ -201,11 +201,11 @@ for i, (name, instrument_code) in enumerate(pairs.items(), start=1):
     with st.spinner(f"Carregando dados para {name}..."):
         df = fetch_dukascopy_data(
             instrument_code,
-            interval_value,
-            time_unit,
+            interval_map_dukascopy[interval],
             dukascopy_python.OFFER_SIDE_BID,
             start_date
         )
+
     used = name
     if df.empty:
         with tabs[i]:
