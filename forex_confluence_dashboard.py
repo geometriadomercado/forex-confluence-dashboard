@@ -31,7 +31,7 @@ import requests
 
 from fmp_news_fetcher import fetch_forex_news, fetch_economic_calendar
 from dukascopy_data_fetcher import fetch_dukascopy_data
-import dukascopy_python
+from dukascopy_python import INTERVAL_MINUTE_5, INTERVAL_MINUTE_15, INTERVAL_HOUR_1, INTERVAL_DAY_1, OFFER_SIDE_BID, INSTRUMENT_FX_MAJORS_EUR_USD, INSTRUMENT_FX_MAJORS_GBP_USD, INSTRUMENT_FX_MAJORS_AUD_USD, INSTRUMENT_FX_MAJORS_USD_CHF
 
 # Configuração da página do Streamlit
 st.set_page_config(page_title="Forex Confluence Dashboard (FREE)", layout="wide")
@@ -138,10 +138,10 @@ from datetime import datetime, timedelta
 
 # Mapeamento de intervalos para Dukascopy
 interval_map_dukascopy = {
-    "5m": dukascopy_python.INTERVAL_MINUTE_5,
-    "15m": dukascopy_python.INTERVAL_MINUTE_15,
-    "1h": dukascopy_python.INTERVAL_HOUR_1,
-    "1d": dukascopy_python.INTERVAL_DAY_1,
+    "5m": INTERVAL_MINUTE_5,
+    "15m": INTERVAL_MINUTE_15,
+    "1h": INTERVAL_HOUR_1,
+    "1d": INTERVAL_DAY_1,
 }
 
 # Mapeamento de períodos para Dukascopy
@@ -153,13 +153,13 @@ period_map_dukascopy = {
 }
 
 start_date = datetime.now() - period_map_dukascopy[period]
-# interval_value, time_unit = interval_map_dukascopy[interval] # Não mais necessário
+# # interval_value, time_unit = interval_map_dukascopy[interval] # Não mais necessário # Não mais necessário
 
 with st.spinner("Carregando dados do DXY..."):
     dxy = fetch_dukascopy_data(
         "USDX",
         interval_map_dukascopy[interval],
-        dukascopy_python.OFFER_SIDE_BID,
+        OFFER_SIDE_BID,
         start_date
     )
 
@@ -181,10 +181,10 @@ macro_str = "USD FORTE (preferir vender EUR/GBP/AUD; comprar USDCHF)" if macro_u
 # Data: Pairs
 # -----------------------------
 pairs = {
-    "EURUSD": dukascopy_python.INSTRUMENT_FX_MAJORS_EUR_USD,
-    "GBPUSD": dukascopy_python.INSTRUMENT_FX_MAJORS_GBP_USD,
-    "AUDUSD": dukascopy_python.INSTRUMENT_FX_MAJORS_AUD_USD,
-    "USDCHF": dukascopy_python.INSTRUMENT_FX_MAJORS_USD_CHF
+    "EURUSD": INSTRUMENT_FX_MAJORS_EUR_USD,
+    "GBPUSD": INSTRUMENT_FX_MAJORS_GBP_USD,
+    "AUDUSD": INSTRUMENT_FX_MAJORS_AUD_USD,
+    "USDCHF": INSTRUMENT_FX_MAJORS_USD_CHF
 }
 
 results = []
@@ -202,7 +202,7 @@ for i, (name, instrument_code) in enumerate(pairs.items(), start=1):
         df = fetch_dukascopy_data(
             instrument_code,
             interval_map_dukascopy[interval],
-            dukascopy_python.OFFER_SIDE_BID,
+            OFFER_SIDE_BID,
             start_date
         )
 
